@@ -801,7 +801,7 @@ def model_notes():
 
 def main():
     st.set_page_config(page_title="MSAP primer screen", page_icon="🧬", layout="wide")
-    st.title("In silico MSAP primer screenfdadfs")
+    st.title("In silico MSAP primer screen")
     st.caption("Potential EcoRI–HpaII/MspI fragments from sequence alone · complete-digest, "
                "unmethylated model · heuristic ranking, not calibrated")
     with st.sidebar:
