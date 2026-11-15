@@ -265,6 +265,13 @@ def top_pairs(ranking, n):
     return lanes
 
 
+def bottom_pairs(ranking, n):
+    lanes = []
+    for e, h in zip(ranking["E_extension"].iloc[:n], ranking["HM_extension"].iloc[:n]):
+        lanes.appendleft((e, h))
+    return lanes
+
+
 def rank_pairs(frags, min_bp, e_len, h_len, bin_bp):
     """Same counts, tie order and sort as msap_sim.analyze, plus rank and score columns."""
     work = pd.DataFrame({
@@ -694,7 +701,7 @@ def render_gel(view, ranking, settings):
     elif mode == "Bottom ranked":
         most = min(32, len(ranking))
         count = st.slider("Number of lanes", 1, most, min(8, most), key="lane_n")
-        lanes = top_pairs(ranking.reverse(), count)
+        lanes = bottom_pairs(ranking, count)
     else:
         lanes = st.multiselect("Primer pairs (up to 16)", pair_options(e_len, h_len),
                                default=top_pairs(ranking, 6), format_func=pair_label,
