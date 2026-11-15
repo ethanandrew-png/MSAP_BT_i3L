@@ -684,12 +684,17 @@ def render_heatmap(ranking, e_len, h_len):
 def render_gel(view, ranking, settings):
     e_len = settings["e_len"]
     h_len = settings["h_len"]
-    mode = st.radio("Lanes", ["Top ranked", "Choose pairs"], key="lane_mode",
+    mode = st.radio("Lanes", ["Top ranked", "Bottom ranked", "Choose pairs"], key="lane_mode",
                     **supported(st.radio, horizontal=True))
     if mode == "Top ranked":
         most = min(32, len(ranking))
         count = st.slider("Number of lanes", 1, most, min(8, most), key="lane_n")
+        # low, high = st.slider("Fragments per pair", 0, most, (0, most), key=f"frange_{most}")
         lanes = top_pairs(ranking, count)
+    elif mode == "Bottom ranked":
+        most = min(32, len(ranking))
+        count = st.slider("Number of lanes", 1, most, min(8, most), key="lane_n")
+        lanes = top_pairs(ranking, -count)
     else:
         lanes = st.multiselect("Primer pairs (up to 16)", pair_options(e_len, h_len),
                                default=top_pairs(ranking, 6), format_func=pair_label,
