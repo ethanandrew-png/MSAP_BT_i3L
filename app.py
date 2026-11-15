@@ -46,7 +46,7 @@ RANK_FIELDS = ["E_extension", "HM_extension", "fragments", "occupied_size_bins",
 RANK_LABELS = {"rank": "#", "E_extension": "E +", "HM_extension": "HM +", "score": "Score",
                "fragments": "Fragments", "occupied_size_bins": "Bins",
                "co_migrating_excess": "Co-migrating", "unique_contigs": "Contigs",
-               "min_bp": "Min bp", "max_bp": "Max bp"}
+               "min_bp": "Min bp", "max_bp": "Max bp", "max_bp": "Confidence"}
 METRICS = {"score": "Rank score", "fragments": "Fragments",
            "occupied_size_bins": "Occupied size bins",
            "co_migrating_excess": "Co-migrating excess"}
