@@ -267,7 +267,7 @@ def top_pairs(ranking, n):
 
 def bottom_pairs(ranking, n):
     lanes = []
-    for e, h in zip(ranking["E_extension"].iloc[-:n], ranking["HM_extension"].iloc[-:n]):
+    for e, h in zip(ranking["E_extension"].iloc[-n:-1], ranking["HM_extension"].iloc[-n:-1]):
         lanes.insert((e, h))
     return lanes
 
