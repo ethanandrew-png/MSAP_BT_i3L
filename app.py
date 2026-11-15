@@ -619,10 +619,10 @@ def sidebar_settings(src, contigs):
         # e_len = st.radio("EcoRI end", [0, 1, 2, 3], index=1, key="e_len", **horizontal)
         # h_len = st.radio("HpaII/MspI end", [0, 1, 2, 3], index=1, key="h_len", **horizontal)
         e_len = st.number_input(
-            "EcoRI end", min_value=0, max_value=50, value=1, step=1, key="bin_bp",
+            "EcoRI end", min_value=0, max_value=50, value=1, step=1, key="e_len",
             help="Additional nucleotides for EcoRI restriction sequence.")
         h_len = st.number_input(
-            "HpaII/MspI end", min_value=0, max_value=50, value=1, step=1, key="bin_bp",
+            "HpaII/MspI end", min_value=0, max_value=50, value=1, step=1, key="h_len",
             help="Additional nucleotides for HpaII/MspI restriction sequence.")
         st.header("Fragment window")
         min_bp = st.number_input("Min bp", min_value=20, max_value=SIZE_CAP, value=100,
