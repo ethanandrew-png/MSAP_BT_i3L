@@ -46,7 +46,7 @@ RANK_FIELDS = ["E_extension", "HM_extension", "fragments", "occupied_size_bins",
 RANK_LABELS = {"rank": "#", "E_extension": "E +", "HM_extension": "HM +", "score": "Score",
                "fragments": "Fragments", "occupied_size_bins": "Bins",
                "co_migrating_excess": "Co-migrating", "unique_contigs": "Contigs",
-               "min_bp": "Min bp", "max_bp": "Max bp", "max_bp": "Confidence"}
+               "min_bp": "Min bp", "max_bp": "Max bp"}
 METRICS = {"score": "Rank score", "fragments": "Fragments",
            "occupied_size_bins": "Occupied size bins",
            "co_migrating_excess": "Co-migrating excess"}
@@ -287,7 +287,6 @@ def rank_pairs(frags, min_bp, e_len, h_len, bin_bp):
         unique_contigs=("contig", "nunique"),
         min_bp=("bp", "min"),
         max_bp=("bp", "max"),
-        confidence=20,
     )
     grid = pd.MultiIndex.from_product([kmers(e_len), kmers(h_len)],
                                       names=["E_extension", "HM_extension"])
