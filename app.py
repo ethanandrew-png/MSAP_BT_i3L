@@ -694,7 +694,7 @@ def render_gel(view, ranking, settings):
     elif mode == "Bottom ranked":
         most = min(32, len(ranking))
         count = st.slider("Number of lanes", 1, most, min(8, most), key="lane_n")
-        lanes = top_pairs(ranking, -count)
+        lanes = top_pairs(-ranking, count)
     else:
         lanes = st.multiselect("Primer pairs (up to 16)", pair_options(e_len, h_len),
                                default=top_pairs(ranking, 6), format_func=pair_label,
