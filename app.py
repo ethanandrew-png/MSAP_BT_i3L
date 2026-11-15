@@ -287,6 +287,7 @@ def rank_pairs(frags, min_bp, e_len, h_len, bin_bp):
         unique_contigs=("contig", "nunique"),
         min_bp=("bp", "min"),
         max_bp=("bp", "max"),
+        confidence=20,
     )
     grid = pd.MultiIndex.from_product([kmers(e_len), kmers(h_len)],
                                       names=["E_extension", "HM_extension"])
