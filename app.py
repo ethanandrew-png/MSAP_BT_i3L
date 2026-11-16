@@ -658,7 +658,7 @@ def genome_warnings(contigs):
 
 def summary_metrics(frags, ranking):
     top = ranking.iloc[0]
-    cols = st.columns(4)
+    cols = st.columns(5)
     cols[0].metric("Fragments in window", f"{len(frags):,}")
     cols[1].metric("Primer pairs", f"{len(ranking):,}")
     cols[2].metric("Median fragments / pair", f"{ranking['fragments'].median():g}")
