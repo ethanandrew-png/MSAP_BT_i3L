@@ -450,12 +450,8 @@ def gel_figure(view, lanes, min_bp, max_bp, bin_bp, offset):
     lo = min_bp + offset
     hi = max_bp + offset
     ladder = ladder_sizes(lo, hi)
-    if lane:
-        columns = [None] + list(lanes) + [None]
-        crowded = len(lanes) > 6
-    else:
-        columns = 1
-        crowded = False
+    columns = [None] + list(lanes) + [None]
+    crowded = len(lanes) > 6
     fig = go.Figure()
     labels = []
     for x, lane in enumerate(columns):
@@ -718,12 +714,8 @@ def render_gel(view, ranking, settings):
                                default=top_pairs(ranking, 6), format_func=pair_label,
                                key=f"lanes_{e_len}{h_len}",
                                **supported(st.multiselect, max_selections=16))[:16]
-    if settings["e_len"] or settings["h_len"]:
-        show_chart(gel_figure(view, lanes, settings["min_bp"], settings["max_bp"],
-                          settings["bin_bp"], settings["offset"]), "gel")
-    else:
-        show_chart(gel_figure(view, 0, settings["min_bp"], settings["max_bp"],
-                          settings["bin_bp"], settings["offset"]), "gel")
+    show_chart(gel_figure(view, lanes, settings["min_bp"], settings["max_bp"],
+                settings["bin_bp"], settings["offset"]), "gel")
     st.caption(f"Ladder lanes at both edges. Brighter, thicker bands = more fragments sharing a "
                f"{settings['bin_bp']}-bp bin. Under this unmethylated model the HpaII and MspI "
                "lanes are identical.")
