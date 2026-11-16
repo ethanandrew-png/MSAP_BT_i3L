@@ -666,6 +666,7 @@ def summary_metrics(frags, ranking):
     note = (f"Score {top['score']} = {top['occupied_size_bins']} bins − 2 × "
             f"{top['co_migrating_excess']} co-migrating")
     cols[3].metric("Top pair", label, **supported(st.metric, help=note))
+    cols[4].metric("For 90% confidence", f"{len(frags):,}")
 
 
 def render_ranking(ranking, frags, run_info):
