@@ -792,6 +792,8 @@ def render_genome(src, contigs, frags_all, frags, settings, run_info):
     with st.expander("Run record (run_info.json)"):
         st.code(run_info, language="json")
 
+def render_sequence():
+    st.print("test")
 
 def model_notes():
     with st.expander("Model, assumptions and scoring"):
@@ -867,7 +869,7 @@ def main():
 
     summary_metrics(frags, ranking)
     genome_warnings(contigs[contigs["contig"].isin(included)])
-    tabs = st.tabs(["Ranking", "Heatmap", "Virtual gel", "Pair detail", "Genome"])
+    tabs = st.tabs(["Ranking", "Heatmap", "Virtual gel", "Pair detail", "Genome", "Full sequence"])
     with tabs[0]:
         render_ranking(ranking, frags, run_info)
     with tabs[1]:
@@ -878,6 +880,8 @@ def main():
         render_pair(view, ranking, settings)
     with tabs[4]:
         render_genome(src, contigs, frags_all, frags, settings, run_info)
+    with tabs[5]:
+        render_sequence()
     model_notes()
 
 
