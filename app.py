@@ -793,7 +793,7 @@ def render_genome(src, contigs, frags_all, frags, settings, run_info):
         st.code(run_info, language="json")
 
 def render_sequence():
-    st.print("test")
+    st.caption("test")
 
 def model_notes():
     with st.expander("Model, assumptions and scoring"):
