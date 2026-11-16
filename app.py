@@ -722,7 +722,7 @@ def render_gel(view, ranking, settings):
         show_chart(gel_figure(view, lanes, settings["min_bp"], settings["max_bp"],
                           settings["bin_bp"], settings["offset"]), "gel")
     else:
-        show_chart(gel_figure(view, False, settings["min_bp"], settings["max_bp"],
+        show_chart(gel_figure(view, 0, settings["min_bp"], settings["max_bp"],
                           settings["bin_bp"], settings["offset"]), "gel")
     st.caption(f"Ladder lanes at both edges. Brighter, thicker bands = more fragments sharing a "
                f"{settings['bin_bp']}-bp bin. Under this unmethylated model the HpaII and MspI "
