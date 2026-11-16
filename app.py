@@ -908,7 +908,7 @@ def main():
     with tabs[4]:
         render_genome(src, contigs, frags_all, frags, settings, run_info)
     with tabs[5]:
-        render_sequence()
+        render_sequence(src, contigs)
     model_notes()
 
 
