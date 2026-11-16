@@ -792,8 +792,35 @@ def render_genome(src, contigs, frags_all, frags, settings, run_info):
     with st.expander("Run record (run_info.json)"):
         st.code(run_info, language="json")
 
-def render_sequence():
-    st.write(seq)
+def read_contig(src, name):
+    """Full sequence of one contig, re-read from the source; cached for the last one used."""
+    key = (src["sha256"], name)
+    memo = st.session_state.get("_seq")
+    if memo is not None and memo[0] == key:
+        return memo[1]
+    seq = ""
+    with src["open"]() as raw, fasta_lines(raw) as lines:
+        for found, _desc, text in iter_fasta(lines):
+            if found == name:
+                seq = text
+                break
+    st.session_state["_seq"] = (key, seq)
+    return seq
+
+
+def render_sequence(src, contigs):
+    name = st.selectbox("Contig", contigs["contig"].unique().tolist(), key="seq_contig")
+    seq = read_contig(src, name)
+    window = 10_000
+    start = st.number_input("Start position (bp, 1-based)", min_value=1,
+                            max_value=max(len(seq), 1), value=1, step=window,
+                            key="seq_start_" + name)
+    piece = seq[start - 1:start - 1 + window]
+    wrapped = "\n".join(piece[i:i + 80] for i in range(0, len(piece), 80))
+    st.caption(f"{name} · {len(seq):,} bp · showing {start:,}–{start + len(piece) - 1:,}")
+    st.code(wrapped, language=None)
+    fasta = f">{name}\n" + "\n".join(seq[i:i + 80] for i in range(0, len(seq), 80)) + "\n"
+    download(st, "⬇ This contig (.fasta)", fasta.encode(), f"{name}.fasta", "text/plain")
 
 def model_notes():
     with st.expander("Model, assumptions and scoring"):
